@@ -4,6 +4,7 @@ window.app = new Vue({
     name: '',
     movie: {},
     selectedMovie: {},
+    search:'',
     nominatedMovie: [],
     },
     created:  function (){
@@ -11,16 +12,8 @@ window.app = new Vue({
     },
 
     methods: {
-        clickedButton : function (event){
-            axios.get('http://www.omdbapi.com/?s='+this.name+'&apikey='+api_key+"&type=Movie")
-            .then((response) =>{
-                this.movie = response.data
-                console.log(this.movie)
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            });
+        clickedButton : function (){
+            this.searchUpdate();
         },
         addNomination : function (index){
             if (this.nominatedMovie.length <= 4){
@@ -40,7 +33,7 @@ window.app = new Vue({
 
         },
         movieDetails: function (index){
-            axios.get('http://www.omdbapi.com/?i='+this.movie.Search[index].imdbID+'&apikey='+api_key+"&type=Movie")
+            axios.get('https://the-shoppies-challenge-uxui.netlify.app/api.php?query='+this.search)
             .then((response) =>{
                 this.selectedMovie = response.data
                 console.log(this.movie)
@@ -51,16 +44,16 @@ window.app = new Vue({
             });
 
         },
-        searchUpdate : function (index){
-            // axios.get('http://www.omdbapi.com/?s='+this.name+'&apikey='+api_key+"&type=Movie")
-            //   .then((response) =>{
-            //       this.movie = response.data
-            //       console.log(this.movie)
-            //   })
-            //   .catch(function (error) {
-            //       // handle error
-            //       console.log(error);
-            //   });
+        searchUpdate : function (){
+            axios.get('https://the-shoppies-challenge-uxui.netlify.app/api.php?query='+this.search)
+              .then((response) =>{
+                  this.movie = response.data
+                  console.log(this.movie)
+              })
+              .catch(function (error) {
+                  // handle error
+                  console.log(error);
+              });
         },
         localStorageQuery : function () {
             return JSON.parse( localStorage.getItem('nominated') );
