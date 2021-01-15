@@ -33,7 +33,7 @@ window.app = new Vue({
 
         },
         movieDetails: function (index){
-            axios.get('https://the-shoppies-challenge-uxui.netlify.app/api.php?query='+this.search)
+            axios.get('https://zhagi.dev/shopify_challenge/api.php?query='+this.search)
             .then((response) =>{
                 this.selectedMovie = response.data
                 console.log(this.movie)
@@ -45,7 +45,7 @@ window.app = new Vue({
 
         },
         searchUpdate : function (){
-            axios.get('https://the-shoppies-challenge-uxui.netlify.app/api.php?query='+this.search)
+            axios.get('https://zhagi.dev/shopify_challengeapi.php?query='+this.search)
               .then((response) =>{
                   this.movie = response.data
                   console.log(this.movie)
