@@ -19,8 +19,7 @@
                 curl_setopt($curl, CURLOPT_URL, "http://www.omdbapi.com?i=".urlencode(urldecode($_GET["details"]))."&type=Movie&apikey=".API_KEY);
             };
 
-            
-            
+
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 
             $output = curl_exec($curl);

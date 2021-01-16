@@ -21,15 +21,17 @@ window.app = new Vue({
         },
         removeNomination : function (index){
             this.nominatedMovie.splice(index,1)
-            // console.log(index)
+            if (this.nominatedMovie.length == 0){
+                this.localStorageCreate()
+            }
         },
         removeselectedNomination : function (movieID){
             this.nominatedMovie.forEach((element,index)  => {
-            if(element.imdbID === movieID){
-                this.nominatedMovie.splice(index,1)
-            }
+                if(element.imdbID === movieID){
+                    this.nominatedMovie.splice(index,1)
+                }
             });
-
+            
         },
         movieDetails: function (index){
             // 'http://www.omdbapi.com/?i='+this.movie.Search[index].imdbID+'&apikey='+api_key+"&type=Movie"
@@ -56,19 +58,17 @@ window.app = new Vue({
               });
         },
         localStorageQuery : function () {
-            return JSON.parse( localStorage.getItem('nominated') );
-            
+            return JSON.parse( localStorage.getItem('nominated') );    
         },
         localStorageCreate : function() {
             localStorage.setItem("nominated", JSON.stringify(this.nominatedMovie));
-            // this.localStorageList();
         },
     },
     computed: {
         showAlert() {
-        if (this.nominatedMovie.length == 5){
-            return true
-        }
+            if (this.nominatedMovie.length == 5){
+                return true
+            }
         },
         nominationID(){
         return this.nominatedMovie.map(x => x.imdbID)
