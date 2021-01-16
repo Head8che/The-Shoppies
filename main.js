@@ -4,7 +4,6 @@ window.app = new Vue({
     name: '',
     movie: {},
     selectedMovie: {},
-    search:'',
     nominatedMovie: [],
     },
     created:  function (){
@@ -33,7 +32,8 @@ window.app = new Vue({
 
         },
         movieDetails: function (index){
-            axios.get('https://zhagi.dev/shopify_challenge/api.php?query='+this.search)
+            // 'http://www.omdbapi.com/?i='+this.movie.Search[index].imdbID+'&apikey='+api_key+"&type=Movie"
+            axios.get('https://zhagi.dev/shopify_challenge/api.php?details='+this.movie.Search[index].imdbID)
             .then((response) =>{
                 this.selectedMovie = response.data
                 console.log(this.movie)
@@ -45,7 +45,7 @@ window.app = new Vue({
 
         },
         searchUpdate : function (){
-            axios.get('https://zhagi.dev/shopify_challengeapi.php?query='+this.search)
+            axios.get('https://zhagi.dev/shopify_challenge/api.php?query='+this.name)
               .then((response) =>{
                   this.movie = response.data
                   console.log(this.movie)
