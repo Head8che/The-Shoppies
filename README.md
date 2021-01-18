@@ -26,4 +26,4 @@ Movie information were all retrieved from the OMDB API
 Since this web application is not being hosted on a server I can only redact the API Key from the src. However, it can be still obtained.
 
 # Get Started
-#### To get started you can visit ___ to view this project or you can fork this repo and run it locally.
+#### To get started you can visit https://the-shoppies-challenge-uxui.netlify.app/ to view this project or you can fork this repo and run it locally.
